@@ -109,7 +109,7 @@ impl VectorCommitment for FriLeaves {
         let mut internal_leaf = Vec::with_capacity(self.coset_size);
         for j in 0..self.coset_size {
             internal_leaf.push(
-                self.layer[(index * self.coset_size + j)]
+                self.layer[index * self.coset_size + j]
                     .as_montgomery()
                     .clone(),
             );
@@ -125,7 +125,7 @@ impl VectorCommitment for FriLeaves {
             // Concatenate the element hashes and hash the result.
             let mut hasher = MaskedKeccak::new();
             for j in 0..self.coset_size {
-                hasher.update(self.layer[(index * self.coset_size + j)].hash().as_bytes());
+                hasher.update(self.layer[index * self.coset_size + j].hash().as_bytes());
             }
             hasher.hash()
         }

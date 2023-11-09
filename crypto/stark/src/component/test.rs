@@ -73,7 +73,7 @@ impl Component for Test {
                 // Exempt the first two cells
                 let exceptions = match (i, columns) {
                     (0, 1) => (X - omega.pow(0)) * (X - omega.pow(1)),
-                    (0, _) | (1, _) => (X - omega.pow(0)),
+                    (0, _) | (1, _) => X - omega.pow(0),
                     (..) => 1.into(),
                 };
                 // x[i + 2] = x[i] * x[i + 1] + claim

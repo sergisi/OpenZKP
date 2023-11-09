@@ -16,7 +16,7 @@ pub(crate) struct ChallengeSeed([u8; 32]);
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
 #[cfg_attr(feature = "std", derive(Debug))]
 pub(crate) struct Challenge {
-    seed:       [u8; 32],
+    seed: [u8; 32],
     difficulty: usize,
 }
 
@@ -81,7 +81,7 @@ impl Challenge {
             self.difficulty, num_threads
         );
         trace!("BEGIN Proof of work");
-        let first_nonce = AtomicU64::new(u64::max_value());
+        let first_nonce = AtomicU64::new(u64::MAX);
         (0..num_threads as u64).into_par_iter().for_each(|offset| {
             for nonce in (offset..).step_by(num_threads) {
                 if self.verify(Response { nonce }) {
