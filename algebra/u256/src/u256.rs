@@ -11,7 +11,8 @@ use std::prelude::v1::*;
 use parity_scale_codec::{Decode, Encode};
 #[cfg(any(test, feature = "proptest"))]
 use proptest_derive::Arbitrary;
-use std::{cmp::Ordering, u64};
+use std::cmp::Ordering;
+use u64;
 
 #[derive(PartialEq, Eq, Clone, Default, Hash)]
 #[cfg_attr(feature = "parity_codec", derive(Encode, Decode))]
@@ -24,12 +25,7 @@ pub struct U256([u64; 4]);
 // TODO: impl core::iter::Step so we have ranges
 
 impl U256 {
-    pub const MAX: Self = Self::from_limbs([
-        u64::max_value(),
-        u64::max_value(),
-        u64::max_value(),
-        u64::max_value(),
-    ]);
+    pub const MAX: Self = Self::from_limbs([u64::MAX, u64::MAX, u64::MAX, u64::MAX]);
     pub const ONE: Self = Self::from_limbs([1, 0, 0, 0]);
     pub const ZERO: Self = Self::from_limbs([0, 0, 0, 0]);
 

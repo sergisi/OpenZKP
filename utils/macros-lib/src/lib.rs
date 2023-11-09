@@ -32,7 +32,6 @@
     trivial_casts,
     trivial_numeric_casts,
     unreachable_pub,
-    unsafe_code,
     variant_size_differences
 )]
 #![cfg_attr(feature = "std", warn(missing_debug_implementations,))]
@@ -58,12 +57,10 @@ fn parse_string(input: TokenStream) -> syn::Result<String> {
     };
     match result {
         Some(b) => Ok(b.value()),
-        None => {
-            Err(syn::Error::new(
-                Span::call_site(),
-                "Expected hexadecimal string",
-            ))
-        }
+        None => Err(syn::Error::new(
+            Span::call_site(),
+            "Expected hexadecimal string",
+        )),
     }
 }
 

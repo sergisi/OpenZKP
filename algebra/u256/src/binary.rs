@@ -5,13 +5,11 @@
 use std::prelude::v1::*;
 
 use crate::{commutative_binop, traits::Binary, U256};
-use std::{
-    ops::{
-        BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not, Shl, ShlAssign, Shr,
-        ShrAssign,
-    },
-    u64,
+use std::ops::{
+    BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not, Shl, ShlAssign, Shr,
+    ShrAssign,
 };
+use u64;
 
 impl Binary for U256 {
     #[inline(always)]

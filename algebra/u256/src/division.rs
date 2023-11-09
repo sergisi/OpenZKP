@@ -13,8 +13,8 @@ use num_traits::Inv;
 use std::{
     num::Wrapping,
     ops::{Div, DivAssign, Rem, RemAssign},
-    u64,
 };
+use u64;
 
 // Division like routines: Integer division/remaindering, Ring
 // division/inversion Modular inversions/divisions.
@@ -58,12 +58,10 @@ impl DivRem<&Self> for U256 {
         let mut numerator = [self.limb(0), self.limb(1), self.limb(2), self.limb(3), 0];
         if rhs.limb(3) > 0 {
             // divrem_nby4
-            divrem_nbym(&mut numerator, &mut [
-                rhs.limb(0),
-                rhs.limb(1),
-                rhs.limb(2),
-                rhs.limb(3),
-            ]);
+            divrem_nbym(
+                &mut numerator,
+                &mut [rhs.limb(0), rhs.limb(1), rhs.limb(2), rhs.limb(3)],
+            );
             Some((
                 Self::from_limbs([numerator[4], 0, 0, 0]),
                 Self::from_limbs([numerator[0], numerator[1], numerator[2], numerator[3]]),

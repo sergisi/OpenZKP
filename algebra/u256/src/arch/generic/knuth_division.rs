@@ -1,5 +1,6 @@
 use crate::algorithms::limb_operations::{adc, msb};
-use core::{convert::TryFrom, u64};
+use core::convert::TryFrom;
+use u64;
 
 const fn val_2(lo: u64, hi: u64) -> u128 {
     ((hi as u128) << 64) | (lo as u128)
@@ -177,7 +178,7 @@ mod tests {
     use zkp_macros_decl::u256h;
 
     const HALF: u64 = 1_u64 << 63;
-    const FULL: u64 = u64::max_value();
+    const FULL: u64 = u64::MAX;
 
     #[test]
     fn div_3by2_tests() {
@@ -190,7 +191,7 @@ mod tests {
     fn test_divrem_4by3() {
         let mut numerator = [40, 31, 79, 84, 0];
         let mut divisor = [53, 12, 12];
-        let expected_quotient = [u64::max_value(), 6];
+        let expected_quotient = [u64::MAX, 6];
         let expected_remainder = [93, 0xffff_ffff_ffff_feb8, 6];
         divrem_nbym(&mut numerator, &mut divisor);
         let remainder = &numerator[0..3];

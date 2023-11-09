@@ -7,7 +7,7 @@ use std::prelude::v1::*;
 use crate::U256;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
-use std::u64;
+use u64;
 
 impl U256 {
     pub fn from_bytes_be(n: &[u8; 32]) -> Self {
@@ -98,12 +98,7 @@ macro_rules! impl_from_int {
                 if n >= 0 {
                     Self::from_limbs([n as u64, 0, 0, 0])
                 } else {
-                    Self::from_limbs([
-                        n as u64,
-                        u64::max_value(),
-                        u64::max_value(),
-                        u64::max_value(),
-                    ])
+                    Self::from_limbs([n as u64, u64::MAX, u64::MAX, u64::MAX])
                 }
             }
         }
@@ -125,12 +120,7 @@ impl From<i128> for U256 {
         if n >= 0 {
             Self::from_limbs([n as u64, (n >> 64) as u64, 0, 0])
         } else {
-            Self::from_limbs([
-                n as u64,
-                (n >> 64) as u64,
-                u64::max_value(),
-                u64::max_value(),
-            ])
+            Self::from_limbs([n as u64, (n >> 64) as u64, u64::MAX, u64::MAX])
         }
     }
 }

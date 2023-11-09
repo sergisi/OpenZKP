@@ -11,10 +11,8 @@ use crate::{
     SquareInline, U256,
 };
 use num_traits::Pow;
-use std::{
-    ops::{Mul, MulAssign},
-    u64,
-};
+use std::ops::{Mul, MulAssign};
+use u64;
 
 // Multiplicative operations: Mul, square, mulmod, pow, etc. routines
 
@@ -166,19 +164,21 @@ impl U256 {
             0,
         ];
         if modulus.limb(3) > 0 {
-            divrem_nbym(&mut numerator, &mut [
-                modulus.limb(0),
-                modulus.limb(1),
-                modulus.limb(2),
-                modulus.limb(3),
-            ]);
+            divrem_nbym(
+                &mut numerator,
+                &mut [
+                    modulus.limb(0),
+                    modulus.limb(1),
+                    modulus.limb(2),
+                    modulus.limb(3),
+                ],
+            );
             Self::from_limbs([numerator[0], numerator[1], numerator[2], numerator[3]])
         } else if modulus.limb(2) > 0 {
-            divrem_nbym(&mut numerator, &mut [
-                modulus.limb(0),
-                modulus.limb(1),
-                modulus.limb(2),
-            ]);
+            divrem_nbym(
+                &mut numerator,
+                &mut [modulus.limb(0), modulus.limb(1), modulus.limb(2)],
+            );
             Self::from_limbs([numerator[0], numerator[1], numerator[2], 0])
         } else if modulus.limb(1) > 0 {
             divrem_nbym(&mut numerator, &mut [modulus.limb(0), modulus.limb(1)]);
