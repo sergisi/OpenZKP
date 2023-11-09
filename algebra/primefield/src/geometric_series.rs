@@ -18,8 +18,8 @@ where
     for<'a> &'a Field: RefFieldLike<Field>,
 {
     current: Field,
-    step:    Field,
-    length:  usize,
+    step: Field,
+    length: usize,
 }
 
 impl<Field> GeometricIter<Field>
@@ -85,8 +85,8 @@ where
 {
     GeometricIter {
         current: base.clone(),
-        step:    step.clone(),
-        length:  usize::max_value(),
+        step: step.clone(),
+        length: usize::MAX,
     }
 }
 
