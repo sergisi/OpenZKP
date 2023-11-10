@@ -1,5 +1,5 @@
 use crate::{Parameters, PrimeField, UInt};
-use rand::{
+use ::rand::{
     distributions::{uniform::SampleUniform, Distribution, Standard, Uniform},
     Rng,
 };
