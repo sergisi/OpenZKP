@@ -55,7 +55,7 @@ mod prime_field;
 #[cfg(any(test, feature = "proptest"))]
 mod proptest;
 mod proth_field;
-#[cfg(feature = "rand")]
+// #[cfg(feature = "rand")]
 mod rand;
 #[cfg(feature = "serde")]
 mod serde;

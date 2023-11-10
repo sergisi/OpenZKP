@@ -2,6 +2,7 @@ use crate::RationalExpression;
 use rand::random;
 use tiny_keccak::{Hasher, Keccak};
 use zkp_primefield::FieldElement;
+
 use zkp_u256::U256;
 
 impl RationalExpression {
