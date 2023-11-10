@@ -56,7 +56,7 @@ mod prime_field;
 mod proptest;
 mod proth_field;
 // #[cfg(feature = "rand")]
-mod rand;
+mod rand_definitions;
 #[cfg(feature = "serde")]
 mod serde;
 mod traits;
