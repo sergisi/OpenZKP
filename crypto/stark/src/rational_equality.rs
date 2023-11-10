@@ -45,4 +45,9 @@ mod tests {
         let right = X.pow(3) / X;
         assert!(!left.equals(&right));
     }
+
+    #[test]
+    fn test_random_creation() {
+        let _r = random::<FieldElement>();
+    }
 }
