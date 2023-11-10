@@ -32,7 +32,7 @@ use zkp_u256::{
 // Derive fails for Clone, PartialEq, Eq, Hash
 pub struct PrimeField<P: Parameters> {
     // TODO: un-pub. They are pub so FieldElement can have const-fn constructors.
-    pub uint:        P::UInt,
+    pub uint: P::UInt,
     pub _parameters: PhantomData<P>,
 }
 
