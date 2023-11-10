@@ -56,7 +56,6 @@ default = [
 ]
 std = [
     "crunchy/std",
-    "hex",
     "itertools/use_std",
     "memadvise",
     "no-std-compat/std",

@@ -126,7 +126,7 @@ impl<P: Parameters> PrimeField<P> {
     // TODO: from_radix_str
     // #[cfg(feature = "std")]
     // pub fn from_hex_str(s: &str) -> Self {
-    // Self::from(UInt::from_hex_str(s))
+    //     Self::from(P::UInt::from_hex_str(s))
     // }
 
     /// Convert to `UInt`.

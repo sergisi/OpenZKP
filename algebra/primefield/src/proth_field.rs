@@ -47,4 +47,22 @@ impl FieldElement {
             _parameters: PhantomData,
         }
     }
+
+    pub fn from_hex_str(hex_string: &str) -> Result<Self, hex::FromHexError> {
+        let uint = <[u8; 32] as hex::FromHex>::from_hex(hex_string).map(|r| {
+            let mut res: [u64; 4] = [0; 4];
+            for i in 0..res.len() {
+                for j in 3..=0 {
+                    let tmp: u64 = res[i] << 8;
+                    let tmp2: u64 = r[i * 4 + j].into();
+                    res[i] = tmp + tmp2
+                }
+            }
+            return Self {
+                uint: U256::from_limbs(res),
+                _parameters: PhantomData,
+            };
+        });
+        return uint;
+    }
 }
