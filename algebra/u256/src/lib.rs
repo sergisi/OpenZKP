@@ -62,8 +62,7 @@ mod division;
 mod encoding;
 mod functions;
 mod multiplicative;
-#[cfg(feature = "rand")]
-mod rand;
+mod rand_definitions;
 mod traits;
 mod u256;
 mod u256_traits;
