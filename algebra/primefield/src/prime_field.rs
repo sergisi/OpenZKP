@@ -30,6 +30,7 @@ use zkp_u256::{
 /// `proptest` support `Parameters` needs to be `'static + Send` (which it
 /// really should anyway).
 // Derive fails for Clone, PartialEq, Eq, Hash
+#[derive(Copy)]
 pub struct PrimeField<P: Parameters> {
     // TODO: un-pub. They are pub so FieldElement can have const-fn constructors.
     pub uint: P::UInt,
