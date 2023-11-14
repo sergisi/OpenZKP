@@ -7,7 +7,7 @@ use zkp_u256::{to_montgomery_const, U256};
 #[allow(clippy::module_name_repetitions)]
 pub type FieldElement = PrimeField<Proth>;
 
-#[derive(PartialEq, Eq, Clone, Debug, Hash)]
+#[derive(PartialEq, Eq, Clone, Debug, Hash, Copy)]
 pub struct Proth();
 
 impl Parameters for Proth {
