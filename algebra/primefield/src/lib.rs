@@ -67,7 +67,7 @@ pub use prime_field::{Parameters, PrimeField};
 pub use zkp_u256::MontgomeryParameters;
 
 // The smallest 252-bit Proth field
-pub use proth_field::FieldElement;
+pub use proth_field::{FieldElement, PrimeFieldError};
 
 pub use invert_batch::{invert_batch, invert_batch_src_dst};
 

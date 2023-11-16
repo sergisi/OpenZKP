@@ -12,6 +12,11 @@ pub type FieldElement = PrimeField<Proth>;
 #[derive(PartialEq, Eq, Clone, Debug, Hash)]
 pub struct Proth();
 
+#[derive(Debug, Display, Error, From)]
+pub enum PrimeFieldError {
+    HexError(hex::FromHexError),
+}
+
 impl Parameters for Proth {
     type UInt = U256;
 
@@ -26,12 +31,6 @@ impl Parameters for Proth {
     const R1: U256 = u256h!("07fffffffffffdf0ffffffffffffffffffffffffffffffffffffffffffffffe1");
     const R2: U256 = u256h!("07ffd4ab5e008810ffffffffff6f800000000001330ffffffffffd737e000401");
     const R3: U256 = u256h!("038e5f79873c0a6df47d84f8363000187545706677ffcc06cc7177d1406df18e");
-}
-
-// I need to install derive_more
-#[derive(Debug, Display, Error, From)]
-pub enum PrimeFieldError {
-    HexError(hex::FromHexError),
 }
 
 impl FieldElement {
