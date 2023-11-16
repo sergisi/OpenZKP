@@ -15,6 +15,7 @@ edition = "2018"
 
 [dependencies]
 crunchy = { version = "0.2.2", default_features = false }
+derive_more = "0.99.17"
 hex = { version = "0.4.0" }
 itertools = { version = "0.9.0", default_features = false }
 log = "0.4.8"

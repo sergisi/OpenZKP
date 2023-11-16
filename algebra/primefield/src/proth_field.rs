@@ -1,13 +1,15 @@
 use crate::{Parameters, PrimeField};
+use derive_more::{Display, Error, From};
 use std::marker::PhantomData;
 use zkp_macros_decl::u256h;
+
 use zkp_u256::{to_montgomery_const, U256};
 
 // TODO: Fix naming
 #[allow(clippy::module_name_repetitions)]
 pub type FieldElement = PrimeField<Proth>;
 
-#[derive(PartialEq, Eq, Clone, Debug, Hash, Copy)]
+#[derive(PartialEq, Eq, Clone, Debug, Hash)]
 pub struct Proth();
 
 impl Parameters for Proth {
@@ -24,6 +26,12 @@ impl Parameters for Proth {
     const R1: U256 = u256h!("07fffffffffffdf0ffffffffffffffffffffffffffffffffffffffffffffffe1");
     const R2: U256 = u256h!("07ffd4ab5e008810ffffffffff6f800000000001330ffffffffffd737e000401");
     const R3: U256 = u256h!("038e5f79873c0a6df47d84f8363000187545706677ffcc06cc7177d1406df18e");
+}
+
+// I need to install derive_more
+#[derive(Debug, Display, Error, From)]
+pub enum PrimeFieldError {
+    HexError(hex::FromHexError),
 }
 
 impl FieldElement {
@@ -48,7 +56,7 @@ impl FieldElement {
         }
     }
 
-    pub fn from_hex_str(hex_string: &str) -> Result<Self, hex::FromHexError> {
+    pub fn from_hex_str(hex_string: &str) -> Result<Self, PrimeFieldError> {
         let uint = <[u8; 32] as hex::FromHex>::from_hex(hex_string).map(|r| {
             let mut res: [u64; 4] = [0; 4];
             for i in 0..res.len() {
@@ -62,7 +70,7 @@ impl FieldElement {
                 uint: U256::from_limbs(res),
                 _parameters: PhantomData,
             };
-        });
-        return uint;
+        })?;
+        return Ok(uint);
     }
 }
